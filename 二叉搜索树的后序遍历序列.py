@@ -21,11 +21,11 @@ class Solution:
                 return False
 
         left = True
-        if index>0:
+        if index > 0:
             left = self.VerifySquenceOfBST(sequence[:index])
 
         right = True
-        if index<length-1:
-            right = self.VerifySquenceOfBST(sequence[index:length-1])
+        if index < length - 1:
+            right = self.VerifySquenceOfBST(sequence[index:length - 1])
 
         return left and right

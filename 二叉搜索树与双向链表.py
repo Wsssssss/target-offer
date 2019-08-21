@@ -18,7 +18,6 @@ class Solution:
             p.right = pRootOfTree
             pRootOfTree.left = p
 
-
         right = self.Convert(pRootOfTree.right)
 
         if right:
@@ -26,4 +25,33 @@ class Solution:
             right.left = pRootOfTree
 
         return left if left else pRootOfTree
+
+    def Convert2(self, pRootOfTree):
+        if not pRootOfTree:
+            return None
+
+        stack =[]
+        resstack = []
+
+        p = pRootOfTree
+        while p or stack:
+            if p:
+                stack.append(p)
+                p = p.left
+            else:
+                node = stack.pop()
+                resstack.append(node)
+                p = node.right
+
+
+        head = resstack[0]
+
+        while resstack:
+            top = resstack.pop(0)
+            if resstack:
+                top.right = resstack[0]
+                resstack[0].left = top
+
+        return head
+
 
