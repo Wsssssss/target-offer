@@ -1,2 +1,17 @@
 # 题目描述
-# 定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+# 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
+# 例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。
+
+class Solution:
+    def PrintMinNumber(self, numbers):
+        if numbers ==None or len(numbers)<=0:
+            return ''
+
+        strnum = [str(x) for x in numbers]
+
+        for i in range(len(strnum)-1):
+            for j in range(i+1,len(strnum)):
+                if strnum[i]+strnum[j]>strnum[j]+strnum[i]:
+                    strnum[i],strnum[j] = strnum[j],strnum[i]
+
+        return ''.join(strnum)
