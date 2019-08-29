@@ -4,7 +4,21 @@
 
 class Solution:
     # 返回对应char
+    def __init__(self):
+        self.cdict = {}
+        self.clist = []
+
     def FirstAppearingOnce(self):
-        # write code here
+        while len(self.clist) > 0 and self.cdict[self.clist[0]] == 2:
+            self.clist.pop(0)
+        if len(self.clist) == 0:
+            return '#'
+        else:
+            return self.clist[0]
+
     def Insert(self, char):
-        # write code here
+        if char not in self.cdict.keys():
+            self.clist.append(char)
+            self.cdict[char] = 1
+        else:
+            self.cdict[char] = 2
