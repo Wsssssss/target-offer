@@ -3,13 +3,13 @@
 
 def GetLeastNumbers_Solution(self, tinput, k):
     import heapq
-    if tinput == None or k<=0 or len(tinput)<=0 or len(tinput)<k:
+    if tinput == None or k <= 0 or len(tinput) <= 0 or len(tinput) < k:
         return []
     output = []
     for i in tinput:
-        if len(output)<k:
-            heapq.heappush(output,-i)
+        if len(output) < k:
+            heapq.heappush(output, -i)
         else:
-            heapq.heappushpop(output,-i)
+            heapq.heappushpop(output, -i)
 
-    return sorted(list(map(lambda x:-x,output)))
+    return sorted(list(map(lambda x: -x, output)))
