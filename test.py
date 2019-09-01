@@ -1,32 +1,40 @@
 # coding=utf-8
-import sys
-import heapq
 
-for line in sys.stdin:
-    a = line.split(" ")
-    num = [int(x) for x in a]
-
-    n = num[0]
-    m = num[1]
-    k = num[2]
-    print(n, m, k)
-    array = []
-    output = []
-    i = n
-    j = m
+line1 = input().split(' ')
+row = int(line1[0])
+k = int(line1[1])
+column = []
+for i in range(row):
+    s = input().split(' ')
+    column.append(s)
 
 
-    def search(i, j, k, output):
-        while i >= 0 and j >= 0:
-            if len(output) == k:
-                array.append(output[-1])
-                output.pop(-1)
-            if len(output) < k:
-                output.append(i * j)
-                left = search(i - 1, j, k, output)
-                right = search(i, j - 1, k, output)
-        return
+def get_value(n):
+    if n == 0:
+        return 1
+    if n == 1:
+        return n
+    else:
+        return n * get_value(n - 1)
 
 
-    search(i, j, k, output)
-    print(max(array))
+for i in range(row):
+    result = 0
+    left = int(column[i][0])
+    right = int(column[i][1])
+    for j in range(left, right + 1):
+        if j < k:
+            result += 1
+        elif j == k:
+            result += 2
+        else:
+            time = j // k
+            for l in range(1, time + 1):
+                first = get_value(j - (k - 1) * l)
+                second = get_value(l)
+                third = get_value(j - (k - 1) * l - l)
+                ans = first / (second * third)
+                result += ans
+            result += 1
+
+    print(int(result))
