@@ -1,21 +1,16 @@
-import sys
+length = input()
+length = int(length)
+arr = input().split(',')
+arr = [int(x) for x in arr]
 
-strs = sys.stdin.readline().strip()
-strlen = len(strs)
-res = []
-for a in range(1, 4):
-    for b in range(1, 4):
-        for c in range(1, 4):
-            for d in range(1, 4):
-                if a + b + c + d == strlen:
-                    A = int(strs[:a])
-                    B = int(strs[a:a + b])
-                    C = int(strs[a + b:a + b + c])
-                    D = int(strs[a + b + c:a + b + c + d])
-                    if A <= 255 and B <= 255 and C <= 255 and D <= 255:
-                        ans = str(A) + '.' + str(B) + '.' + str(C) + '.' + str(D)
-                        if len(ans) == strlen + 3:
-                            res.append(ans)
+dp = [0] * (max(arr) + 1)
 
-result = ','.join(res)
-print(result)
+for i in range(len(arr)):
+    if arr[i] > 0:
+        dp[arr[i]] = 1
+
+ans = 0
+for j in range(1, len(dp)):
+    if dp[j] == 0:
+        ans = j
+print(ans)

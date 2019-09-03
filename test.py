@@ -1,22 +1,18 @@
 # coding=utf-8
-
-arr = [0, 1, 3, 4, 2, 6, 1]
-S = 6
-
-
-def find(arr, S):
-    result = []
-    for i in range(len(arr)):
-        length = 0
-        sum = 0
-        while sum <= S and i < len(arr):
-            sum += arr[i]
-            length += 1
-            i += 1
-        result.append(length - 1)
-    return max(result)
+length = input()
+length = int(length)
+ar = input().split(' ')
+arr = [int(x) for x in ar]
 
 
-result = find(arr, S)
+if arr == None or length <= 0:
+    print('')
 
-print(result)
+strnum = [str(x) for x in arr]
+
+for i in range(len(strnum) - 1):
+    for j in range(i + 1, len(strnum)):
+        if strnum[i] + strnum[j] < strnum[j] + strnum[i]:
+            strnum[i], strnum[j] = strnum[j], strnum[i]
+
+print (''.join(strnum))

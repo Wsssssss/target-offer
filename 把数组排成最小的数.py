@@ -4,14 +4,14 @@
 
 class Solution:
     def PrintMinNumber(self, numbers):
-        if numbers ==None or len(numbers)<=0:
+        if numbers == None or len(numbers) <= 0:
             return ''
 
         strnum = [str(x) for x in numbers]
 
-        for i in range(len(strnum)-1):
-            for j in range(i+1,len(strnum)):
-                if strnum[i]+strnum[j]>strnum[j]+strnum[i]:
-                    strnum[i],strnum[j] = strnum[j],strnum[i]
+        for i in range(len(strnum) - 1):
+            for j in range(i + 1, len(strnum)):
+                if strnum[i] + strnum[j] > strnum[j] + strnum[i]:
+                    strnum[i], strnum[j] = strnum[j], strnum[i]
 
         return ''.join(strnum)
